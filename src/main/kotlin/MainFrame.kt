@@ -1,8 +1,9 @@
+import shape.Circle
+import shape.Rectangle
 import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 import javax.swing.JFrame
-import kotlin.random.Random
 import kotlin.system.exitProcess
 
 
@@ -13,14 +14,22 @@ import kotlin.system.exitProcess
  * @since 2023-11-23
  */
 class MainFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame(title), KeyListener {
+    private var canvasPanel: CanvasPanel
     //region Initialization
     init {
-        setSize(frameWidth, frameHeight)
-        setLocation((SCREEN_SIZE.width - frameWidth) / 2, (SCREEN_SIZE.height - frameHeight) / 2)
+        val center = Point((SCREEN_SIZE.width - frameWidth) / 2, (SCREEN_SIZE.height - frameHeight) / 2)
+        val dimension = Dimension(frameWidth, frameHeight)
+
+        size = dimension
+        location = center
+        canvasPanel = CanvasPanel().apply { preferredSize = dimension }
+        contentPane = canvasPanel
+        pack()
+        defaultCloseOperation = EXIT_ON_CLOSE
+        isResizable = false
+        isVisible = true
+
         addKeyListener(this)
-        val canvasPanel = CanvasPanel()
-        canvasPanel.preferredSize = Dimension(width/2, height/2)
-        add(canvasPanel)
     }
     //endregion
 
@@ -46,4 +55,12 @@ class MainFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame(title
         }
     }
     //endregion
+
+    fun renderCircles(circles: ArrayList<Circle>) {
+        canvasPanel.circles.addAll(circles)
+    }
+
+    fun renderRectangles(rectangles: ArrayList<Rectangle>) {
+        canvasPanel.rectangles.addAll(rectangles)
+    }
 }

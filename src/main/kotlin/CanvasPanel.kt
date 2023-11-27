@@ -1,4 +1,3 @@
-import shape.Circle
 import shape.Rectangle
 import java.awt.*
 import javax.swing.JPanel
@@ -9,44 +8,27 @@ import javax.swing.JPanel
  * @author john
  * @since 2023-11-23
  */
-class CanvasPanel(
-    var circles: ArrayList<Circle> = arrayListOf(),
-    var rectangles: ArrayList<Rectangle> = arrayListOf()
-) : JPanel() {
+class CanvasPanel: JPanel(true) {
+    var rectangles: Array<Rectangle>? = null
     override fun paintComponent(g: Graphics?) {
         super.paintComponent(g)
 
         (g as Graphics2D).apply {
             val hints = RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
             addRenderingHints(hints)
+            performPaint(this)
+        }
+    }
 
-            circles.forEach {
-                Helper.setStrokeWidth(this, 1f)
-                Helper.setColor(this, Helper.randomColor())
-                Helper.fillCircle(this, it.x, it.y, it.radius)
-                Helper.setColor(this, Helper.randomColor())
-                Helper.strokeCircle(this, it.x, it.y, it.radius)
+    private fun performPaint(g2d: Graphics2D) {
+        rectangles?.apply {
+            for ((index, rectangle) in withIndex()) {
+                Helper.setStrokeWidth(g2d, 1f)
+                Helper.setColor(g2d, Color.BLUE)
+                Helper.fillRectangle(g2d, rectangle.width * index, rectangle.y, rectangle.width, rectangle.height)
+                Helper.setColor(g2d, Color.BLACK)
+                Helper.strokeRectangle(g2d, rectangle.width * index, rectangle.y, rectangle.width, rectangle.height)
             }
-
-            rectangles.forEach{
-                Helper.setStrokeWidth(this, 1f)
-                Helper.setColor(this, Helper.randomColor())
-                Helper.fillRectangle(this, it.x, it.y, it.width, it.height)
-                Helper.strokeRectangle(this, it.x, it.y, it.width, it.height)
-            }
-
-//            val shapeWidth = 20f
-//            val offset = 10f
-//            for (i in 0..<width step (shapeWidth + offset).toInt()) {
-//                val h: Float = Random.nextInt(height / 2 - 100).toFloat()
-//                val x = i.toFloat() + shapeWidth / 2
-//                val y = height / 2 - h / 2
-//                Helper.setStrokeWidth(this, 1f)
-//                Helper.setColor(this, Color.RED)
-//                Helper.fillRectangle(this, x, y, shapeWidth, h)
-//                Helper.setColor(this, Color.BLUE)
-//                Helper.strokeRectangle(this, x, y, shapeWidth, h)
-//            }
         }
     }
 }

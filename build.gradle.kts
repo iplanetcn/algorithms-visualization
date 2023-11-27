@@ -25,5 +25,5 @@ kotlin {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("AppKt")
 }

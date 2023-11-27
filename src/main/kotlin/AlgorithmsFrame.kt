@@ -1,5 +1,5 @@
-import shape.Circle
 import shape.Rectangle
+import sort.BaseSort
 import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
@@ -13,7 +13,7 @@ import kotlin.system.exitProcess
  * @author john
  * @since 2023-11-23
  */
-class MainFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame(title), KeyListener {
+class AlgorithmsFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame(title), KeyListener {
     private var canvasPanel: CanvasPanel
     //region Initialization
     init {
@@ -56,11 +56,14 @@ class MainFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame(title
     }
     //endregion
 
-    fun renderCircles(circles: ArrayList<Circle>) {
-        canvasPanel.circles.addAll(circles)
+    fun setRectangles(rectangles: Array<Rectangle>) {
+        canvasPanel.rectangles = rectangles
+        canvasPanel.repaint()
     }
 
-    fun renderRectangles(rectangles: ArrayList<Rectangle>) {
-        canvasPanel.rectangles.addAll(rectangles)
+    fun sort(baseSort: BaseSort) {
+        canvasPanel.rectangles?.apply {
+            baseSort.sort(this)
+        }
     }
 }

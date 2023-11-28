@@ -1,7 +1,5 @@
 import shape.Rectangle
-import sort.MergeSort
-import sort.QuickSort
-import sort.SelectionSort
+import sort.BubbleSort
 import java.awt.EventQueue
 
 /**
@@ -25,7 +23,8 @@ class AlgorithmsVisualizer(screenWidth: Int, screenHeight: Int, amount: Int) {
         frame.apply {
 //            sort(SelectionSort(16) { repaint() })
 //            sort(QuickSort(16) { repaint() })
-            sort(MergeSort(1) { repaint() })
+//            sort(MergeSort(16) { repaint() })
+            sort(BubbleSort(16) { repaint() })
         }
     }
 }

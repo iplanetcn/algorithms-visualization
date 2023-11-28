@@ -11,9 +11,16 @@ import shape.Sortable
 class MergeSort(delay: Long, doAfterEachStep: ()->Unit) : BaseSort(delay, doAfterEachStep) {
 
     override fun <T : Sortable> sort(data: Array<T>) {
-        val newArray = mergeSort(data)
-        for ((index, _) in data.withIndex()) {
-            data[index] = newArray[index]
+        val newData = mergeSort(data)
+        for ((index, item) in newData.withIndex()) {
+            var newIndex = index
+            for ((originIndex, originItem) in data.withIndex()) {
+                if (originItem == item) {
+                    newIndex = originIndex
+                    break
+                }
+            }
+            swap(data, index, newIndex)
         }
     }
 

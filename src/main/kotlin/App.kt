@@ -3,7 +3,7 @@ import java.awt.Toolkit
 
 private const val WINDOW_WIDTH = 800
 private const val WINDOW_HEIGHT = 600
-private const val N = 200
+private const val N = 100
 
 val SCREEN_SIZE: Dimension = Toolkit.getDefaultToolkit().screenSize
 

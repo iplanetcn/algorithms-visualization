@@ -25,9 +25,9 @@ class CanvasPanel: JPanel(true) {
             for ((index, rectangle) in withIndex()) {
                 Helper.setStrokeWidth(g2d, 1f)
                 Helper.setColor(g2d, Color.BLUE)
-                Helper.fillRectangle(g2d, rectangle.width * index, rectangle.y, rectangle.width, rectangle.height)
+                Helper.fillRectangle(g2d, rectangle.width * index + rectangle.width/2, rectangle.y, rectangle.width, rectangle.height)
                 Helper.setColor(g2d, Color.BLACK)
-                Helper.strokeRectangle(g2d, rectangle.width * index, rectangle.y, rectangle.width, rectangle.height)
+                Helper.strokeRectangle(g2d, rectangle.width * index + rectangle.width/2, rectangle.y, rectangle.width, rectangle.height)
             }
         }
     }

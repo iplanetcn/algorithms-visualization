@@ -9,11 +9,9 @@ import kotlin.random.Random
  * @since 2023-11-24
  */
 object Factory {
-    fun generateCircles(): ArrayList<Circle> {
-        val width = 800
-        val height = 600
+    fun generateCircles(width: Int, height: Int, amount: Int): ArrayList<Circle> {
         val data: ArrayList<Circle> = arrayListOf()
-        val shapeWidth = 20f
+        val shapeWidth = width * 1.00000f / amount
         val offset = 10f
         for (i in 0..<width step (shapeWidth + offset).toInt()) {
             val h: Float = Random.nextInt(height / 2 - 100).toFloat()

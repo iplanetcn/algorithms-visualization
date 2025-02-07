@@ -3,7 +3,7 @@ import java.awt.*
 import javax.swing.JPanel
 
 /**
- * CanasPanel
+ * CanvasPanel
  *
  * @author john
  * @since 2023-11-23

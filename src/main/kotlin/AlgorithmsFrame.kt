@@ -3,7 +3,9 @@ import sort.BaseSort
 import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
+import javax.swing.Action
 import javax.swing.JFrame
+import javax.swing.JPanel
 import kotlin.system.exitProcess
 
 
@@ -13,7 +15,7 @@ import kotlin.system.exitProcess
  * @author john
  * @since 2023-11-23
  */
-class AlgorithmsFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame(title), KeyListener {
+class AlgorithmsFrame(title: String, frameWidth: Int, frameHeight: Int, actionsListener: ActionsListener) : JFrame(title), KeyListener {
     private var canvasPanel: CanvasPanel
     //region Initialization
     init {
@@ -23,7 +25,8 @@ class AlgorithmsFrame(title: String, frameWidth: Int, frameHeight: Int) : JFrame
         size = dimension
         location = center
         canvasPanel = CanvasPanel().apply { preferredSize = dimension }
-        contentPane = canvasPanel
+        add(ActionPanel(actionsListener), BorderLayout.NORTH)
+        add(canvasPanel, BorderLayout.SOUTH)
         pack()
         defaultCloseOperation = EXIT_ON_CLOSE
         isResizable = false

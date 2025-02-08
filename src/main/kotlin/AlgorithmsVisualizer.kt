@@ -1,3 +1,4 @@
+import shape.Circle
 import shape.Rectangle
 import sort.BubbleSort
 import sort.MergeSort
@@ -5,19 +6,18 @@ import sort.QuickSort
 import sort.SelectionSort
 import sort.SortType
 import java.awt.EventQueue
-import javax.swing.SwingUtilities
-
 /**
  * AlgorithmsVisualizer
  *
  * @author john
  * @since 2023-11-27
  */
-class AlgorithmsVisualizer(screenWidth: Int, screenHeight: Int, amount: Int) {
+class AlgorithmsVisualizer(val screenWidth: Int, val screenHeight: Int, val amount: Int) {
     private var state: State = State.Stop
     private var sortType: SortType = SortType.Bubble
 
-    private var rectangles: Array<Rectangle> = Factory.generateRectangles(screenWidth, screenHeight, amount)
+    private lateinit var rectangles: Array<Rectangle>
+    private lateinit var circles:Array<Circle>
 
     private lateinit var frame: AlgorithmsFrame
 
@@ -25,8 +25,7 @@ class AlgorithmsVisualizer(screenWidth: Int, screenHeight: Int, amount: Int) {
         EventQueue.invokeLater {
             frame = AlgorithmsFrame("Algorithms Visualization", screenWidth, screenHeight, object : ActionsListener {
                 override fun onSortTypeChanged(sortType: SortType) {
-                    rectangles = Factory.generateRectangles(screenWidth, screenHeight, amount)
-                    frame.setRectangles(rectangles)
+                    generateShapes()
                     this@AlgorithmsVisualizer.sortType = sortType
                 }
 
@@ -37,8 +36,15 @@ class AlgorithmsVisualizer(screenWidth: Int, screenHeight: Int, amount: Int) {
                     }
                 }
             })
-            frame.setRectangles(rectangles)
+            generateShapes()
         }
+    }
+
+    private fun generateShapes() {
+        rectangles = Factory.generateRectangles(screenWidth, screenHeight, amount)
+        circles = Factory.generateCircles(screenWidth, screenHeight, amount)
+        frame.setRectangles(rectangles)
+        frame.setCircles(circles)
     }
 
     private fun run() {

@@ -22,6 +22,9 @@ class ActionPanel(actionsListener: ActionsListener): JPanel(FlowLayout()) {
             radioButton.addActionListener(actionListener)
             buttonGroup.add(radioButton)
             add(radioButton)
+            if (sort == SortType.Bubble) {
+                radioButton.isSelected = true
+            }
         }
 
         val runButton = JButton("Run")

@@ -6,13 +6,12 @@ package shape
  * @author john
  * @since 2023-11-24
  */
-class Circle(var x: Float, var y: Float, var radius: Float, var dx: Float = 0f, var dy: Float = 0f): Sortable {
-    fun move() {
-        x += dx
-        y += dy
+class Circle(var x: Float, var y: Float, var radius: Float): Sortable {
+    override fun getValue(): Float {
+        return -y
     }
 
-    override fun getValue(): Float {
-        return y
+    override fun toString(): String {
+        return "$y"
     }
 }

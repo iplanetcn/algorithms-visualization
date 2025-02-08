@@ -1,3 +1,4 @@
+import shape.Circle
 import shape.Rectangle
 import sort.BaseSort
 import java.awt.*
@@ -64,9 +65,18 @@ class AlgorithmsFrame(title: String, frameWidth: Int, frameHeight: Int, actionsL
         canvasPanel.repaint()
     }
 
+    fun setCircles(circles: Array<Circle>) {
+        canvasPanel.circles = circles
+        canvasPanel.repaint()
+    }
+
     fun sort(baseSort: BaseSort) {
-        canvasPanel.rectangles?.apply {
-            baseSort.sort(this)
+        canvasPanel.rectangles?.let {
+            baseSort.sort(it)
+        }
+
+        canvasPanel.circles?.let {
+            baseSort.sort(it)
         }
     }
 }

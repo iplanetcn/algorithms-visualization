@@ -9,19 +9,16 @@ import kotlin.random.Random
  * @since 2023-11-24
  */
 object Factory {
-    fun generateCircles(width: Int, height: Int, amount: Int): ArrayList<Circle> {
+    fun generateCircles(width: Int, height: Int, amount: Int): Array<Circle> {
         val data: ArrayList<Circle> = arrayListOf()
-        val shapeWidth = width * 1.00000f / amount
-        val offset = 10f
-        for (i in 0..<width step (shapeWidth + offset).toInt()) {
-            val h: Float = Random.nextInt(height / 2 - 100).toFloat()
-            val x = i.toFloat() + shapeWidth / 2
-            val y = height / 2 - h / 2
-            val dx = Random.nextInt(-5, 5).toFloat()
-            val dy = Random.nextInt(-5, 5).toFloat()
-            data.add(Circle(x, y, shapeWidth, dx, dy))
+        val radius = width * 1.00000f / amount
+        val offset = 0f
+        for (i in 0..<width step (radius + offset).toInt()) {
+            val x = i.toFloat()
+            val y = Random.nextInt(height / 2 - 100).toFloat() + radius
+            data.add(Circle(x, y, radius))
         }
-        return data
+        return Array(data.size) { data[it] }
     }
 
     fun generateRectangles(width: Int, height: Int, amount: Int): Array<Rectangle> {
@@ -29,12 +26,10 @@ object Factory {
         val step = width * 1.00000f / amount
         val offset = 0f
         for (i in 0..<width step (step + offset).toInt()) {
-            val h: Float = Random.nextInt(height / 2 - 100).toFloat()
+            val h = Random.nextInt(height / 2 - 100).toFloat()
             val x = i.toFloat() + step / 2
             val y = height / 2 - h / 2
-            val dx = Random.nextInt(-2, 2).toFloat()
-            val dy = Random.nextInt(-2, 2).toFloat()
-            data.add(Rectangle(x, y, step, h, dx, dy))
+            data.add(Rectangle(x, y, step, h))
         }
         return Array(data.size) { data[it] }
     }

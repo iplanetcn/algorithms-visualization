@@ -54,10 +54,10 @@ class AlgorithmsVisualizer(val screenWidth: Int, val screenHeight: Int, val amou
 
         frame.apply {
             when (sortType) {
-                SortType.Bubble -> sort(BubbleSort(16) { repaint() })
-                SortType.Merge -> sort(MergeSort(16) { repaint() })
-                SortType.Quick -> sort(QuickSort(16) { repaint() })
-                SortType.Select -> sort(SelectionSort(16) { repaint() })
+                SortType.Bubble -> sort(BubbleSort(DELAY) { repaint() })
+                SortType.Merge -> sort(MergeSort(DELAY) { repaint() })
+                SortType.Quick -> sort(QuickSort(DELAY) { repaint() })
+                SortType.Select -> sort(SelectionSort(DELAY) { repaint() })
             }
         }
     }

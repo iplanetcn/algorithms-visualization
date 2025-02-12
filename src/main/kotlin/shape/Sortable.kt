@@ -1,5 +1,7 @@
 package shape
 
+import java.awt.Color
+
 /**
  * SortShape
  *
@@ -12,4 +14,8 @@ interface Sortable: Comparable<Sortable> {
     override fun compareTo(other: Sortable): Int {
         return getValue().compareTo(other.getValue())
     }
+
+    fun changeColor(color: Color)
+
+    fun resetColor()
 }

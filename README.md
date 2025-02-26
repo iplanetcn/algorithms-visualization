@@ -5,9 +5,12 @@ Algorithms Visualization
 
 - [x] Bubble
 - [x] Merge
-- [x] Quick
 - [x] Select
 - [x] Insert
+- [x] Quick
+- [ ] QuickTwoWay
+- [ ] QuickThreeWay
+
 
 > Time complexity and space complexity of sorting algorithms
 

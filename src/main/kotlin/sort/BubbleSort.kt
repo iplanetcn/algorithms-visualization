@@ -20,15 +20,4 @@ class BubbleSort(delay: Long, doAfterEachStep: () -> Unit) : BaseSort(delay, doA
             }
         }
     }
-
-//    override fun <T : Sortable> sort(data: Array<T>) {
-//        val n = data.size
-//        for (i in 0..< n) {
-//            for (j in 0..< n) {
-//                if (data[i] < data[j]) {
-//                    swap(data, i, j)
-//                }
-//            }
-//        }
-//    }
 }

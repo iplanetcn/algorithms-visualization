@@ -1,22 +1,16 @@
 import sort.SortType
 import java.awt.FlowLayout
-import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
 import javax.swing.ButtonGroup
 import javax.swing.JButton
 import javax.swing.JPanel
 import javax.swing.JRadioButton
 
-class ActionPanel(actionsListener: ActionsListener): JPanel(FlowLayout()) {
+class ActionPanel(listener: ActionsListener): JPanel(FlowLayout()) {
 
     init {
-        var buttonGroup = ButtonGroup()
-        val actionListener = object: ActionListener {
-            override fun actionPerformed(e: ActionEvent) {
-                actionsListener.onSortTypeChanged(SortType.valueOf(e.actionCommand))
-            }
-
-        }
+        val buttonGroup = ButtonGroup()
+        val actionListener = ActionListener { e -> listener.onSortTypeChanged(SortType.valueOf(e.actionCommand)) }
         SortType.entries.toTypedArray().forEach { sort ->
             val radioButton = JRadioButton(sort.name)
             radioButton.addActionListener(actionListener)
@@ -29,18 +23,10 @@ class ActionPanel(actionsListener: ActionsListener): JPanel(FlowLayout()) {
 
         val runButton = JButton("Run")
         val pauseButton = JButton("Pause")
-        runButton.addActionListener(object : ActionListener {
-            override fun actionPerformed(e: ActionEvent?) {
-                actionsListener.onStateChanged(State.Run)
-            }
-        })
-
-        pauseButton.addActionListener(object : ActionListener {
-            override fun actionPerformed(e: ActionEvent?) {
-                actionsListener.onStateChanged(State.Pause)
-            }
-        })
+        runButton.addActionListener { listener.onStateChanged(State.Run) }
+        pauseButton.addActionListener { listener.onStateChanged(State.Pause) }
         add(runButton)
+        add(pauseButton)
     }
 
 }

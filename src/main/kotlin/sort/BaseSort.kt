@@ -1,5 +1,6 @@
 package sort
 
+import SOUND_ON
 import shape.Sortable
 import sound.ToneGenerator.playTone
 import java.awt.Color
@@ -20,18 +21,21 @@ abstract class BaseSort(private val delay: Long, private val doAfterEachStep: ()
         data[second] = temp
 
         // 播放音调
-        playTone(44f * data[first].getValue(), delay.toInt(), 0.5f)
-        playTone(440f * data[second].getValue(), delay.toInt(), 0.5f)
+        if (SOUND_ON) {
+            playTone(44f * data[first].getValue(), delay.toInt(), 0.5f)
+            playTone(440f * data[second].getValue(), delay.toInt(), 0.5f)
+        }
 
         // 改变颜色
         data[first].changeColor(Color.green)
         data[second].changeColor(Color.green)
 
-        Thread.sleep(delay)
-        doAfterEachStep.invoke()
-
-        // FIXME 重置颜色
-        data[first].resetColor()
-        data[second].resetColor()
+        try {
+            Thread.sleep(delay)
+        } finally {
+            doAfterEachStep.invoke()
+            data[first].resetColor()
+            data[second].resetColor()
+        }
     }
 }

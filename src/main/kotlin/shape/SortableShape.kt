@@ -3,7 +3,7 @@ package shape
 import java.awt.Color
 
 abstract class SortableShape(var color: Color): Sortable {
-    val defaultColor = color
+    private val defaultColor = color
 
     override fun changeColor(color: Color) {
         this.color = color

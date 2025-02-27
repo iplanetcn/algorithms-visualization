@@ -8,8 +8,10 @@ Algorithms Visualization
 - [x] Select
 - [x] Insert
 - [x] Quick
-- [ ] QuickTwoWay
-- [ ] QuickThreeWay
+- [ ] Dual Pivot Quick
+- [ ] Triple Pivot Quick
+- [ ] Heap
+- [ ] Shell
 
 
 > Time complexity and space complexity of sorting algorithms

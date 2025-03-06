@@ -1,14 +1,14 @@
 package model
 
-class MaxHeap<T : Comparable<T>> {
+class MaxHeap<T : Comparable<T>>: Heap<T> {
     private val heap = mutableListOf<T>()
 
-    fun insert(element: T) {
+    private fun insert(element: T) {
         heap.add(element)
         heapifyUp(heap.size - 1)
     }
 
-    fun extractMax(): T? {
+    private fun extractMax(): T? {
         if (heap.isEmpty()) return null
         val max = heap[0]
         heap[0] = heap.last()
@@ -50,4 +50,27 @@ class MaxHeap<T : Comparable<T>> {
         heap[i] = heap[j]
         heap[j] = temp
     }
+
+    //region Heap Methods
+    override fun push(element: T) {
+        this.insert(element)
+    }
+
+    override fun pop(): T? {
+        return extractMax()
+    }
+
+    override fun peek(): T? {
+        if (heap.isEmpty()) return null
+        return heap[0]
+    }
+
+    override fun size(): Int {
+        return heap.size
+    }
+
+    override fun isEmpty(): Boolean {
+        return heap.isEmpty()
+    }
+    //endregion
 }

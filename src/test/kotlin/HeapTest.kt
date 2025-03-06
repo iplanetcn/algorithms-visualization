@@ -36,18 +36,18 @@ class HeapTest {
     @Test
     fun testMinHeap() {
         val maxHeap = MaxHeap<Int>()
-        maxHeap.insert(10)
-        maxHeap.insert(5)
-        maxHeap.insert(15)
-        println(maxHeap.extractMax()) // 输出：15
+        maxHeap.push(10)
+        maxHeap.push(5)
+        maxHeap.push(15)
+        println(maxHeap.peek()) // 输出：15
     }
 
     @Test
     fun testMaxHeap() {
         val minHeap = MinHeap<Int>()
-        minHeap.insert(10)
-        minHeap.insert(5)
-        minHeap.insert(15)
-        println(minHeap.extractMin()) // 输出：5
+        minHeap.push(10)
+        minHeap.push(5)
+        minHeap.push(15)
+        println(minHeap.peek()) // 输出：5
     }
 }

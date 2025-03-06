@@ -1,10 +1,12 @@
+import model.MaxHeap
+import model.MinHeap
 import org.junit.jupiter.api.Test
 import java.util.*
 
 
 class HeapTest {
     @Test
-    fun testHeap() {
+    fun testPriorityQueue() {
         /* 初始化列表 */
         val data = mutableListOf(1, 3, 2, 5, 4)
         // 初始化小顶堆
@@ -28,5 +30,24 @@ class HeapTest {
             print("${maxHeap.poll()} ")
         }
 
+        println()
+    }
+
+    @Test
+    fun testMinHeap() {
+        val maxHeap = MaxHeap<Int>()
+        maxHeap.insert(10)
+        maxHeap.insert(5)
+        maxHeap.insert(15)
+        println(maxHeap.extractMax()) // 输出：15
+    }
+
+    @Test
+    fun testMaxHeap() {
+        val minHeap = MinHeap<Int>()
+        minHeap.insert(10)
+        minHeap.insert(5)
+        minHeap.insert(15)
+        println(minHeap.extractMin()) // 输出：5
     }
 }

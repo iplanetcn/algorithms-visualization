@@ -1,3 +1,5 @@
+import maze.MazeData
+import maze.MazeVisualizer
 import java.awt.Dimension
 import java.awt.Toolkit
 
@@ -10,5 +12,8 @@ const val SOUND_ON = false
 val SCREEN_SIZE: Dimension = Toolkit.getDefaultToolkit().screenSize
 
 fun main() {
-    AlgorithmsVisualizer(WINDOW_WIDTH, WINDOW_HEIGHT, N)
+    MazeVisualizer(WINDOW_WIDTH, WINDOW_HEIGHT, MazeData("maze_8_8.txt"))
+//    AlgorithmsVisualizer(WINDOW_WIDTH, WINDOW_HEIGHT, N)
+//    val mazeData = MazeData("maze_8_8.txt")
+//    mazeData.print()
 }

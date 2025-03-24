@@ -43,7 +43,7 @@ object Helper {
     }
 
     fun fillRectangle(g2d: Graphics2D, x: Float, y: Float, width: Float, height: Float) {
-        val rectangle = Rectangle2D.Float(x - width / 2, y - height / 2, width, height)
+        val rectangle = Rectangle2D.Float(x, y, width, height)
         g2d.fill(rectangle)
     }
 
